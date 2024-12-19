@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Solar System</title>
+    <style>
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000000;
+            overflow: hidden;
+        }
+        
+        .date-time {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: white;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .space {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Stars */
+        .star {
+            position: absolute;
+            background-color: #ffffff;
+            border-radius: 50%;
+            animation: twinkle 1s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            from { opacity: 0.2; }
+            to { opacity: 1; }
+        }
+
+        /* Sun */
+        .sun {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-image: url('planet-images/main/sun.png');
+            background-size: cover;
+            box-shadow: 0 0 50px gold;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        /* Planet orbits and planets */
+        .orbit {
+            position: absolute;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .planet {
+            position: absolute;
+            background-size: cover;
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Individual planet styles */
+        .mercury-orbit {
+            width: 300px;
+            height: 300px;
+            animation: rotate 8s linear infinite;
+        }
+        .mercury {
+            width: 20px;
+            height: 20px;
+            top: -10px;
+            left: 50%;
+            background-image: url('planet-images/main/mercury.png');
+        }
+
+        .venus-orbit {
+            width: 400px;
+            height: 400px;
+            animation: rotate 12s linear infinite;
+        }
+        .venus {
+            width: 35px;
+            height: 35px;
+            top: -17.5px;
+            left: 50%;
+            background-image: url('planet-images/main/venus.png');
+        }
+
+        .earth-orbit {
+            width: 500px;
+            height: 500px;
+            animation: rotate 20s linear infinite;
+        }
+        .earth {
+            width: 40px;
+            height: 40px;
+            top: -20px;
+            left: 50%;
+            background-image: url('planet-images/main/earth.png');
+        }
+
+        .mars-orbit {
+            width: 600px;
+            height: 600px;
+            animation: rotate 30s linear infinite;
+        }
+        .mars {
+            width: 30px;
+            height: 30px;
+            top: -15px;
+            left: 50%;
+            background-image: url('planet-images/main/mars.png');
+        }
+
+        .jupiter-orbit {
+            width: 800px;
+            height: 800px;
+            animation: rotate 40s linear infinite;
+        }
+        .jupiter {
+            width: 80px;
+            height: 80px;
+            top: -40px;
+            left: 50%;
+            background-image: url('planet-images/main/jupiter.png');
+        }
+
+        .saturn-orbit {
+            width: 1000px;
+            height: 1000px;
+            animation: rotate 50s linear infinite;
+        }
+        .saturn {
+            width: 70px;
+            height: 70px;
+            top: -35px;
+            left: 50%;
+            background-image: url('planet-images/main/saturn.png');
+        }
+
+        .uranus-orbit {
+            width: 1200px;
+            height: 1200px;
+            animation: rotate 60s linear infinite;
+        }
+        .uranus {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 50%;
+            background-image: url('planet-images/main/uranus.png');
+        }
+
+        .neptune-orbit {
+            width: 1400px;
+            height: 1400px;
+            animation: rotate 70s linear infinite;
+        }
+        .neptune {
+            width: 45px;
+            height: 45px;
+            top: -22.5px;
+            left: 50%;
+            background-image: url('planet-images/main/neptune.png');
+        }
+
+        /* Moon */
+        .moon-orbit {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rotate 5s linear infinite;
+        }
+        .moon {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-image: url('planet-images/main/moon.png');
+            background-size: cover;
+            border-radius: 50%;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Zoom controls */
+        .zoom-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .zoom-controls button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid white;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="date-time" id="datetime"></div>
+    <div class="space">
+        <div class="sun"></div>
+        
+        <!-- Mercury -->
+        <div class="orbit mercury-orbit">
+            <div class="planet mercury"></div>
+        </div>
+
+        <!-- Venus -->
+        <div class="orbit venus-orbit">
+            <div class="planet venus"></div>
+        </div>
+
+        <!-- Earth and Moon -->
+        <div class="orbit earth-orbit">
+            <div class="planet earth">
+                <div class="moon-orbit">
+                    <div class="moon"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mars -->
+        <div class="orbit mars-orbit">
+            <div class="planet mars"></div>
+        </div>
+
+        <!-- Jupiter -->
+        <div class="orbit jupiter-orbit">
+            <div class="planet jupiter"></div>
+        </div>
+
+        <!-- Saturn -->
+        <div class="orbit saturn-orbit">
+            <div class="planet saturn"></div>
+        </div>
+
+        <!-- Uranus -->
+        <div class="orbit uranus-orbit">
+            <div class="planet uranus"></div>
+        </div>
+
+        <!-- Neptune -->
+        <div class="orbit neptune-orbit">
+            <div class="planet neptune"></div>
+        </div>
+    </div>
+
+    <div class="zoom-controls">
+        <button onclick="zoomIn()">Zoom In</button>
+        <button onclick="zoomOut()">Zoom Out</button>
+    </div>
+
+    <script>
+        // Create stars
+        function createStars() {
+            const space = document.querySelector('.space');
+            const numberOfStars = 400;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                star.style.animationDelay = `${Math.random() * 1}s`;
+                
+                space.appendChild(star);
+            }
+        }
+
+        // Zoom functionality
+        let zoomLevel = 1;
+        const space = document.querySelector('.space');
+
+        function zoomIn() {
+            if (zoomLevel < 2) {
+                zoomLevel += 0.1;
+                space.style.transform = `scale(${zoomLevel})`;
+            }
+        }
+
+        function zoomOut() {
+            if (zoomLevel > 0.3) {
+                zoomLevel -= 0.1;
+                space.style.transform = `scale(${zoomLevel})`;
+            }
+        }
+        
+        // Update date and time
+        function updateDateTime() {
+            const now = new Date();
+            const dateTimeStr = now.toUTCString();
+            document.getElementById('datetime').textContent = `UTC: ${dateTimeStr}`;
+        }
+
+        // Initialize stars when the page loads
+        window.addEventListener('load', function() {
+    // Create stars when the window loads
+    createStars();
+    
+    // Call updateDateTime immediately
+    updateDateTime();
+    
+    // Set up a timer to call updateDateTime every second
+    setInterval(updateDateTime, 1000);
+});
+    </script>
+</body>
+</html>
