@@ -13,9 +13,9 @@ A beautiful and educational web-based visualization of our solar system, featuri
 
 ## 🚀 Demo
 
-View the live demo: [Add your demo link here]
+View the live demo: [https://imabutahersiddik.github.io/Solar-System-Animation/]
 
-![Solar System Preview](/planet-images/screenshot.png)
+![Solar System Preview](/planet-images/screenshots/screenshot.png)
 
 ## 📋 Planet Details
 
@@ -148,7 +148,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 For support, please:
 1. Open an issue
 2. Contact via GitHub discussions
-3. Email: [your-email@domain.com]
+3. Email: [abutahersiddik313@gmail.com]
 
 ## 🔄 Updates and Versioning
 
@@ -164,7 +164,7 @@ For support, please:
 - [ ] Add planet rotation on their axes
 - [ ] Include major moons
 - [ ] Add asteroid belt
-- [ ] Implement zoom functionality
+- [x] Implement zoom functionality
 - [ ] Add planet information cards on hover
 - [ ] Include sound effects
 - [ ] Add day/night cycles for Earth
